@@ -10,4 +10,4 @@ class Products(models.Model):
     description=models.CharField(max_length=1000)
     stock=models.BigIntegerField()
     category_id=models.ForeignKey(Categories,on_delete=models.CASCADE)
-    profile_pic=models.CharField(default="")
+    profile_pic=models.CharField(default="",max_length=1000)
