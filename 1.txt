@@ -1,0 +1,8 @@
+{
+    "product_name": "dfs",
+    "product_price": 23,
+    "description": "sdf",
+    "stock": null,
+    "profile_pic": "dsfds",
+    "category_id": null
+}
