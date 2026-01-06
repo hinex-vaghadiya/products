@@ -8,3 +8,5 @@ python-dotenv
 whitenoise
 requests
 django-cors-headers
+cloudinary 
+django-cloudinary-storage

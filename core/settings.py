@@ -17,6 +17,7 @@ import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 from datetime import timedelta
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'cloudinary',
+    'cloudinary_storage',
     
 ]
 
@@ -151,12 +154,28 @@ REST_FRAMEWORK = {
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
+    #  'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # ),
     
 }
 
 SIMPLE_JWT = {
     "SIGNING_KEY": SECRET_KEY_signing,
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'diipo18tm',
+    'API_KEY': '821259325289924',
+    'API_SECRET': 'plDRmVW-C_ZrGLiE9_pXdPZI22g',
+}
+
+cloudinary.config(
+    cloud_name="diipo18tm",
+    api_key="821259325289924",
+    api_secret="plDRmVW-C_ZrGLiE9_pXdPZI22g",
+    secure=True
+)
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
