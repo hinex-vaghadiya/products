@@ -4,8 +4,9 @@ from products.views import ProductsViewset,ActivenowView
 
 router=routers.DefaultRouter()
 router.register(r'products',ProductsViewset)
-router.register(r'active',ActivenowView)
+
 
 urlpatterns=[
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('active',ActivenowView.as_view()),
 ]
