@@ -4,6 +4,7 @@ from products.models import Products
 from products.serializers import ProductsSerializer
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from .authentication import MicroserviceJWTAuthentication
+from rest_framework.views import APIView
 # Create your views here.
 
 class ProductsViewset(ModelViewSet):
