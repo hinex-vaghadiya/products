@@ -18,4 +18,6 @@ class ProductsViewset(ModelViewSet):
             return [AllowAny()]
         # Require authentication for other methods
         return [IsAuthenticated()]
-    
+class ActivenowView(APIView):
+    def get(self,request):
+        return Response({"message":"Activated"},status=status.HTTP_200_OK)
