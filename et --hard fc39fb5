@@ -1,0 +1,15 @@
+[33m0d89212[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m serializer debug
+[33m69c64c6[m auto stock increment and decrement
+[33mfc39fb5[m configure seriallzers little schema change added batch code and is_active to batch model
+[33m7da8512[m little schema change added batch code and is_active to batch model
+[33me2b47bc[m database design change
+[33mb94c7a2[m only jsonrender enabled
+[33m8849fcd[m added imports response and status
+[33m08f2bfb[m Update urls.py errror resolving for active endpoint
+[33me6b2fd4[m Update views.py error resolved apiview
+[33m8a97b00[m Update urls.py added active endpoint
+[33m0bebf9a[m Update views.py added activenowview
+[33me69e85d[m get request allowed any for product and category
+[33m4451a3b[m third committ
+[33mfbd92b9[m second committ
+[33m28ab1ff[m first commit
