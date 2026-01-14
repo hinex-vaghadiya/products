@@ -31,7 +31,9 @@ class VariantImageViewSet(ModelViewSet):
 class ProductViewSet(ModelViewSet):
     queryset = Products.objects.prefetch_related('variants', 'images').all()
     serializer_class = ProductSerializer
-    parser_classes = [MultiPartParser, FormParser] 
+    parser_classes = [MultiPartParser, FormParser]
+    lookup_field = "slug"
+    lookup_url_kwarg = "slug"
 
 class ProductVariantViewSet(ModelViewSet):
     queryset = ProductVariant.objects.prefetch_related('images').all()
