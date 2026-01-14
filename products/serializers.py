@@ -84,7 +84,9 @@ class ProductSerializer(serializers.ModelSerializer):
             'category',      # Read-only nested
             'category_id',   # Write-only field for POST/PUT
             'variants',
-            'images'
+            'images',
+            'created_at',
+            'slug'
         ]
 
     def create(self, validated_data):

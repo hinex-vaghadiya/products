@@ -9,10 +9,22 @@ from cloudinary.models import CloudinaryField
 class Products(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, null=True, blank=True) 
     description = models.CharField(max_length=1000)
     category_id = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="products")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.product_name)
+            slug = base_slug
+            count = 1
+            while Products.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{count}"
+                count += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.product_name
