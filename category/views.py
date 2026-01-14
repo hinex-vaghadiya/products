@@ -9,6 +9,8 @@ from .authentication import MicroserviceJWTAuthentication
 class CategoryViewSet(ModelViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategorySerializer
+    lookup_field = "slug"
+    lookup_url_kwarg = "slug"
 
 
 # class CategoriesViewset(ModelViewSet):
