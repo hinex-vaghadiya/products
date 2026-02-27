@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from products.models import Products,ProductVariant,ProductImage,VariantImage
-from products.serializers import ProductSerializer,ProductVariantSerializer,ProductImageSerializer,VariantImageSerializer
+from products.models import Products,ProductVariant,ProductImage,VariantImage,Review
+from products.serializers import ProductSerializer,ProductVariantSerializer,ProductImageSerializer,VariantImageSerializer,ReviewSerializer
+import requests
+import os
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from .authentication import MicroserviceJWTAuthentication
 from rest_framework.views import APIView
@@ -57,3 +59,48 @@ class ProductVariantViewSet(ModelViewSet):
 class ActivenowView(APIView):
     def get(self,request):
         return Response({"message":"Activated"},status=status.HTTP_200_OK)
+
+class ProductReviewsView(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request, slug):
+        product = Products.objects.filter(slug=slug).first()
+        if not product:
+            return Response({"error": "Product not found"}, status=404)
+        reviews = Review.objects.filter(product=product, is_approved=True)
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data)
+
+class AddReviewView(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request, slug):
+        product = Products.objects.filter(slug=slug).first()
+        if not product:
+            return Response({"error": "Product not found"}, status=404)
+        
+        user_id = request.data.get('user_id')
+        rating = request.data.get('rating')
+        review_text = request.data.get('review_text')
+
+        CART_URL = os.environ.get('CART_URL', 'http://127.0.0.1:8001/api/')
+        try:
+            resp = requests.get(f"{CART_URL}verify-purchase/{user_id}/{product.product_id}/")
+            if resp.status_code == 200 and resp.json().get('has_purchased'):
+                pass
+            else:
+                return Response({"error": "You must purchase and receive this product before reviewing."}, status=400)
+        except Exception as e:
+            pass # allow in dev if carts is unreachable
+
+        review = Review.objects.create(
+            product=product,
+            user_id=user_id,
+            rating=rating,
+            review_text=review_text
+        )
+        serializer = ReviewSerializer(review)
+        return Response(serializer.data, status=201)
+
+class AdminReviewViewSet(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [AllowAny]

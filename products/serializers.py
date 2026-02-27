@@ -108,3 +108,9 @@ class ProductSerializer(serializers.ModelSerializer):
             for img_data in images_data:
                 ProductImage.objects.create(product=instance, **img_data)
         return instance
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        from products.models import Review
+        model = Review
+        fields = '__all__'

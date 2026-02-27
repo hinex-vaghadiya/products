@@ -77,3 +77,13 @@ class VariantImage(models.Model):
     variant = models.ForeignKey(ProductVariant, related_name="images", on_delete=models.CASCADE)
     image = CloudinaryField('image')
 
+class Review(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="reviews")
+    user_id = models.IntegerField()
+    rating = models.IntegerField()
+    review_text = models.TextField()
+    is_approved = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.user_id} on {self.product.product_name}"
