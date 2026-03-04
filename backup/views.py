@@ -7,11 +7,11 @@ from datetime import datetime, timezone
 from django.core.management import call_command
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_http_methods
 
 
 @csrf_exempt
-@require_POST
+@require_http_methods(["GET", "POST"])
 def trigger_backup(request):
     """
     Endpoint to trigger a database backup.
