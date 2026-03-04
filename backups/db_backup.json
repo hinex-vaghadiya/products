@@ -1,10 +1,2 @@
 [
-{
-  "model": "category.categories",
-  "pk": 1,
-  "fields": {
-    "category_name": "db backup",
-    "slug": "db-backup"
-  }
-}
 ]
