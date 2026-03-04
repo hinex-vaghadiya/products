@@ -18,9 +18,9 @@ def trigger_backup(request):
     Exports all app data as JSON and pushes it to GitHub.
     Protected by BACKUP_SECRET header.
     """
-    # Validate secret
+    # Validate secret (accept from header or query param)
     backup_secret = os.environ.get("BACKUP_SECRET", "")
-    provided_secret = request.headers.get("X-Backup-Secret", "")
+    provided_secret = request.headers.get("X-Backup-Secret", "") or request.GET.get("secret", "")
 
     if not backup_secret or provided_secret != backup_secret:
         return JsonResponse({"error": "Unauthorized"}, status=401)
