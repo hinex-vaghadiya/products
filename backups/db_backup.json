@@ -1,2 +1,61 @@
 [
+{
+  "model": "category.categories",
+  "pk": 2,
+  "fields": {
+    "category_name": "soap",
+    "slug": "soap"
+  }
+},
+{
+  "model": "products.products",
+  "pk": 1,
+  "fields": {
+    "product_name": "haldi soap",
+    "slug": "haldi-soap",
+    "description": "sdfdsfsdfs",
+    "category_id": 2,
+    "is_active": true,
+    "created_at": "2026-03-04T14:24:00.287Z"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "compare_at_price": 700,
+    "stock": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "image": "image/upload/v1772634240/jwp3n04p3vglatswsktj.jpg",
+    "is_primary": true
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "image": "image/upload/v1772634241/pc09ziqkle9kiscocvue.jpg",
+    "is_primary": false
+  }
+},
+{
+  "model": "products.variantimage",
+  "pk": 1,
+  "fields": {
+    "variant": 1,
+    "image": "image/upload/v1772634243/biue11z9tmq63nji3vdz.jpg"
+  }
+}
 ]
