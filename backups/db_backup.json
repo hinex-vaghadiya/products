@@ -8,6 +8,14 @@
   }
 },
 {
+  "model": "category.categories",
+  "pk": 3,
+  "fields": {
+    "category_name": "db bakup",
+    "slug": "db-bakup"
+  }
+},
+{
   "model": "products.products",
   "pk": 1,
   "fields": {
